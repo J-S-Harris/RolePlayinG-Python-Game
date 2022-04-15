@@ -48,6 +48,7 @@ class template:
         
     def levelup(self):
         self.level=self.level+1
+        time.sleep(0.5)
         print('\n----------\n'+self.name,'levels up')
         self.HP=self.stats[1]+(self.level*self.growth[1])
         self.strength=self.stats[2]+(self.level*self.growth[2])
@@ -101,18 +102,18 @@ class urchin(template):     # THINK OF OTHER CLASSES TO ADD :D
 # -------------------------------------------------------
 
 print('\nWelcome to RolePlayinG Python Game!')
-time.sleep(2)
+time.sleep(1)
 print('\n\nWho would you like the join your 3 person party?\n\n')
-time.sleep(2)
+time.sleep(1)
 print('----------------------------------------')
 print('Warrior:',warrior.classDescription)
-time.sleep(2)
+time.sleep(1)
 print('Wizard:',wizard.classDescription)
-time.sleep(2)
+time.sleep(1)
 print('Urchin:',urchin.classDescription)
-time.sleep(2)
+time.sleep(1)
 print('----------------------------------------')
-time.sleep(2)
+time.sleep(1)
 
 global namenew
 
@@ -135,7 +136,7 @@ def createA():  #
     else:
         print('Class not recognised')
         createA()
-        time.sleep(2)
+        time.sleep(1)
 
 def createB():
     print('\n\n--------\n\nWho will join the party? (Second person)')
@@ -156,7 +157,7 @@ def createB():
     else:
         print('Class not recognised')
         createB()
-        time.sleep(2)
+        time.sleep(1)
 
 def createC():
     print('\n\n--------\n\nWho will join the party? (Third person)')
@@ -177,12 +178,12 @@ def createC():
     else:
         print('Class not recognised, please try again.')
         createC()
-        time.sleep(2)
+        time.sleep(1)
         
 createA()
 createB()
 createC()
-time.sleep(2)
+time.sleep(1)
 
 # -----------------------------------
 
@@ -195,9 +196,9 @@ time.sleep(1)
 print(C.name,'-',C.career)
 time.sleep(1)
 print('\nI wonder what they will find on their journey...')
-time.sleep(2)
+time.sleep(1)
 print('\n----------------------\n')
-time.sleep(2)
+time.sleep(1)
 # ------------------------------------------------
 
 class monster():
@@ -251,7 +252,8 @@ def GenerateMonster():
     for i in x:
         RandMonsterSpecies=i[0]
     y=monster(RandMonsterName,RandMonsterSpecies,RandMonsterTitle)
-    #time.sleep(2)
+    print('A new monster appears!\n')
+    #time.sleep(1)
 
 GenerateMonster()
 
@@ -265,15 +267,17 @@ def victory():
     monstBeatenFormula=monstBeaten**2
     x=[A,B,C]
     for i in x:
-        expToLevelUp=10+(i.level**2)   # Changed! Make sure this hasn't broken it
+        expToLevelUp=9+(i.level**2)   # Changed! Make sure this hasn't broken it
         i.exp=int(i.exp+y.expgiven)     # DOES URCHIN GET LESS IF THEY USE THEIR SPECIAL?????
+        time.sleep(0.5)
         print(i.name, 'gained experience! New experience:',i.exp,'\n')
         while i.exp>=expToLevelUp:
             i.exp=i.exp-expToLevelUp
             i.levelup()
     print('-------------\n')
+    time.sleep(0.5)
     GenerateMonster()
-    #time.sleep(2)
+    #time.sleep(1)
 
 # -------------------------------------------------------------
 
@@ -286,7 +290,7 @@ def monsterAttack():
         monsterAttackA=int(y.strength/A.defence)+1
         monsterAttackB=int(y.strength/B.defence)+1
         monsterAttackC=int(y.strength/C.defence)+1
-        print('\n',y.name,'attacks the party!') # <----- How to apply to one RANDOM party member???
+        print('\n' +y.name+' attacks the party!') # <----- How to apply to one RANDOM party member???
         print('\n')
         print(A.name,'took',monsterAttackA,'damage!\n')
         time.sleep(1)
@@ -321,9 +325,8 @@ def monsterAttack():
 # -------------------------------------------------------------
 
 def fightTurn():
-    time.sleep(3)
-    print('\nA monster appears!',y.name,y.title, '(' + y.species + ') stands before you!\n')
-    time.sleep(1)
+    time.sleep(2)
+    print('\n'+y.name,y.title, '(' + y.species + ') is sizing you up!')
     print(y.HP,'HP remaining\n')
     time.sleep(0.5)
     x=[A,B,C]
@@ -335,7 +338,7 @@ def fightTurn():
             time.sleep(1)
             if y.HP>=1:
                 if i.HP >0:              # MAKE SURE THIS DOESN'T BREAK IT; should just stop dead characters acting
-                    print('\nWhat will', i.name,'('+i.career+') do?\n\n\n> Attack?\n> Magic Attack?\n> Special? Uses:',i.specialused,'\n> Spend Points? Points:',points,'\n')   
+                    print('\nWhat will', i.name,'('+i.career+',', str(i.HP)+'HP remaining) do?\n\n\n> Attack?\n> Magic Attack?\n> Special? Uses:',i.specialused,'\n> Spend Points? Points:',points,'\n')   
                     decision=input()
                     decision=decision.lower()
                     print('\n')
@@ -371,7 +374,7 @@ def fightTurn():
     if y.HP<1:
         print('\n      ',y.name,'was defeated!\n')
         points=points+y.difficulty
-        print('\n\nPoints:',points)
+        print('Points:',points,'\n--------\n')
         victory()
     else:
         monsterAttack()
