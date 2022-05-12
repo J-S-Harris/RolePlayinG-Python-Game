@@ -62,7 +62,7 @@ class template:
         points=points+self.level
         print('\n\nPoints:',points)
 
-class warrior(template):    # By putting a previously defined class between brackets, the new class gains all of its code as well as its own
+class warrior(template):
     stats='Warrior',12,12,1,4,'Powerful warriors with strong physical attacks, but weak magic attacks\nTheir special attack outputs huge damage\n'
     growth='Null', 4,4,1,3
     specialname='titanic rage'
