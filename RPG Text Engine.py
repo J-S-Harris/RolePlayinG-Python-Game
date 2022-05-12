@@ -1,3 +1,6 @@
+# TO DO:
+# - Test for bugs
+
 global adventurers
 adventurers=[]
 points=10
@@ -10,7 +13,7 @@ cursor=connect.cursor()
 from random import seed
 from random import randint
 
-#global monstBeaten
+
 monstBeaten=0
 monstBeatenFormula=0
 
@@ -122,7 +125,7 @@ def createA():  #
     namenew=input('name? ')
     if namenew=="":
         createA()
-    classnew=input('Class? (warrior, wizard, urchin): ')  # Add variable, add class name to it, print each entry here as selection
+    classnew=input('Class? (warrior, wizard, urchin): ') 
     classnew=classnew.lower()
     try: levelnew=int(input('Level? '))
     except: levelnew=int(input('Level? (integers only)'))
@@ -267,8 +270,8 @@ def victory():
     monstBeatenFormula=monstBeaten**2
     x=[A,B,C]
     for i in x:
-        expToLevelUp=9+(i.level**2)   # Changed! Make sure this hasn't broken it
-        i.exp=int(i.exp+y.expgiven)     # DOES URCHIN GET LESS IF THEY USE THEIR SPECIAL?????
+        expToLevelUp=9+(i.level**2)  
+        i.exp=int(i.exp+y.expgiven) 
         time.sleep(0.5)
         print(i.name, 'gained experience! New experience:',i.exp,'\n')
         while i.exp>=expToLevelUp:
@@ -290,7 +293,7 @@ def monsterAttack():
         monsterAttackA=int(y.strength/A.defence)+1
         monsterAttackB=int(y.strength/B.defence)+1
         monsterAttackC=int(y.strength/C.defence)+1
-        print('\n' +y.name+' attacks the party!') # <----- How to apply to one RANDOM party member???
+        print('\n' +y.name+' attacks the party!') 
         print('\n')
         print(A.name,'took',monsterAttackA,'damage!\n')
         time.sleep(1)
@@ -317,7 +320,7 @@ def monsterAttack():
             print(C.name, 'has',C.HP,'HP left!')
         else:
             print(C.name, 'is dead!')
-        if A.HP<=0:                     # CHECK THAT THIS ENDS THE GAME WHEN ALL ARE DEAD! (and prints out the score as well)
+        if A.HP<=0:                     
             if B.HP<=0:
                 if C.HP<=0:
                     gameOver()
@@ -337,7 +340,7 @@ def fightTurn():
             print(i.name +"'s turn")
             time.sleep(1)
             if y.HP>=1:
-                if i.HP >0:              # MAKE SURE THIS DOESN'T BREAK IT; should just stop dead characters acting
+                if i.HP >0:          
                     print('\nWhat will', i.name,'('+i.career+',', str(i.HP)+'HP remaining) do?\n\n\n> Attack?\n> Magic Attack?\n> Special? Uses:',i.specialused,'\n> Spend Points? Points:',points,'\n')   
                     decision=input()
                     decision=decision.lower()
